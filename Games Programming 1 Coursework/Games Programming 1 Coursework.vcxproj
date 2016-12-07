@@ -45,6 +45,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>C:\SDL2\SDL2-2.0.4\include;C:\SDL2\SDL2_image-2.0.1\include;C:\SDL2\SDL2_ttf-2.0.14\include;C:\SDL2\SDL2_mixer-2.0.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <BrowseInformation>true</BrowseInformation>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -60,6 +61,9 @@ xcopy /Y "C:\SDL2\SDL2_ttf-2.0.14\lib\x86\*.dll" "$(OutDir)"
 xcopy /Y "C:\SDL2\SDL2_mixer-2.0.1\lib\x86\*.dll" "$(OutDir)"
 </Command>
     </PostBuildEvent>
+    <Bscmake>
+      <PreserveSbr>true</PreserveSbr>
+    </Bscmake>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -123,6 +127,10 @@ xcopy /Y "C:\SDL2\SDL2_mixer-2.0.1\lib\x86\*.dll" "$(OutDir)"
     <ClCompile Include="cSprite.cpp" />
     <ClCompile Include="cTexture.cpp" />
     <ClCompile Include="cTextureMgr.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
+    <None Include="ClassDiagram1.cd" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -63,7 +63,7 @@ void cGame::initialise(SDL_Window* theSDLWND, SDL_Renderer* theRenderer)
 	//Store the buttons
 	btnNameList = { "exit_btn", "menu_btn", "play_btn"};
 	btnTexturesToUse = { "Images/Buttons/button_exit.png", "Images/Buttons/button_menu.png", "Images/Buttons/button_play.png"};
-	btnPos = { { 400, 375 }, { 400, 300 }, { 500, 500 }, { 400, 300 }, { 740, 500 } };
+	btnPos = { { 400, 375 }, { 400, 300 }, { 500, 500 } };
 	for (int bCount = 0; bCount < btnNameList.size(); bCount++)
 	{
 		theTextureMgr->addTexture(btnNameList[bCount], btnTexturesToUse[bCount]);
@@ -76,8 +76,10 @@ void cGame::initialise(SDL_Window* theSDLWND, SDL_Renderer* theRenderer)
 		newBtn->setSpriteDimensions(theTextureMgr->getTexture(btnNameList[bCount])->getTWidth(), theTextureMgr->getTexture(btnNameList[bCount])->getTHeight());
 		theButtonMgr->add(btnNameList[bCount], newBtn);
 	}
+
 	theGameState = MENU;
 	theBtnType = EXIT;
+
 	// Create textures for Game Dialogue (text)
 	fontList = { "Cheetah" };
 	fontsToUse = { "Fonts/CHEETAH.ttf" };
@@ -85,6 +87,7 @@ void cGame::initialise(SDL_Window* theSDLWND, SDL_Renderer* theRenderer)
 	{
 		theFontMgr->addFont(fontList[fonts], fontsToUse[fonts], 36);
 	}
+
 	gameTextNames = { "TitleTxt", "ThanksTxt", "SeeYouTxt", "StepTxt", "WonTxt", "LoseTxt" , "ButtonTxt" , "InstructionTxt" };
 	gameTextList = { "A-Maze-ing!", "Thanks for playing!", "See you again soon!", "Steps: ", "YOU WON!", "You lose :(" , "Use WASD to move and space to shoot!" , "Navigate the maze and escape using as little steps as possible!" };  //text printed in font Title is the texture made from this
 	for (int text = 0; text < gameTextNames.size(); text++) //For, integar text = 0, text is less than text name size, add 1 to text
@@ -116,14 +119,13 @@ void cGame::initialise(SDL_Window* theSDLWND, SDL_Renderer* theRenderer)
 	thePlayer.setRocketVelocity({ 0, 0 });
 
 	// Create vector array of textures
-
-	for (int astro = 0; astro < 2; astro++)
+	for (int counter = 0; counter < 2; counter++)
 	{
 		theAsteroids.push_back(new cAsteroid);
-		theAsteroids[astro]->setSpritePos({ 930, 23 + (astro * 50) });
-		theAsteroids[astro]->setTexture(theTextureMgr->getTexture(textureName[3]));
-		theAsteroids[astro]->setSpriteDimensions(theTextureMgr->getTexture(textureName[3])->getTWidth(), theTextureMgr->getTexture(textureName[3])->getTHeight());
-		theAsteroids[astro]->setActive(true);
+		theAsteroids[counter]->setSpritePos({ 930, 23 + (counter * 50) });
+		theAsteroids[counter]->setTexture(theTextureMgr->getTexture(textureName[3]));
+		theAsteroids[counter]->setSpriteDimensions(theTextureMgr->getTexture(textureName[3])->getTWidth(), theTextureMgr->getTexture(textureName[3])->getTHeight());
+		theAsteroids[counter]->setActive(true);
 	}
 
 	// Sets the score to "Steps: 0"
@@ -1073,7 +1075,7 @@ void cGame::update(double deltaTime)
 		}
 	}
 
-	// Update the Rockets position
+	// Update the player position
 	thePlayer.update(deltaTime);
 }
 
